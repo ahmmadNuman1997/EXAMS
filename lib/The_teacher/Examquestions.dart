@@ -5,6 +5,8 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
 
+import 'Choices/Options_to_add/Question_Selection.dart';
+import 'Choices/Options_to_add/choose_the_correct_answer.dart';
 class ExamQuestions extends StatefulWidget {
   const ExamQuestions({Key? key}) : super(key: key);
 
@@ -13,137 +15,212 @@ class ExamQuestions extends StatefulWidget {
 }
 
 class _ExamQuestionsState extends State<ExamQuestions> {
-  //File?  _alcamera;
-  var _image;
-  var imagepicker;
+  bool _load = false;
+  late File imgFile;
+  final imgPicker = ImagePicker();
 
-  @override
-  void initState() {
-    super.initState();
-    imagepicker = ImagePicker();
+  Widget displayImage (){
+    if (imgFile == null ){
+      return Text('No image Selected');
+    }
+    else {
+      return Image.file(imgFile, width: 350, height: 330,);
+    }
+  }
+  void openCamera() async {
+    var imgCamera = await imgPicker.getImage (source:ImageSource.camera);
+    setState(() {
+      imgFile = File(imgCamera!.path);
+      _load = true;
+    });
+    Navigator.of(context).pop();
+  }
+  void openGallery() async {
+    var imGallery = await imgPicker.getImage(source: ImageSource.gallery);
+    setState(() {
+      _load = true;
+      imgFile = File(imGallery!.path);
+    });
+    Navigator.of(context).pop();
   }
 
-  // Future ImageSelection() async {
-  //
-  //   final mycamera  = await ImagePicker().getImage(source: ImageSource.camera);
-  //   setState(() {
-  //     _alcamera = File (mycamera!.path) ;
-  //   });
-  // }
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(7.0),
-      height: MediaQuery.of(context).size.height,
-      child: Directionality(
-        textDirection: TextDirection.rtl,
-        child: ListView(
-          padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
-          shrinkWrap: true,
-          dragStartBehavior: DragStartBehavior.start,
-          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-          children: [
-            Column(
-              children: <Widget>[
-                Text(
-                  'data',
-                  style: GoogleFonts.robotoCondensed(
-                    fontSize: 15,
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            SizedBox(
-              height: 100,
-              child: TextField(
-                //keyboardType: TextInputType.number,
-                style: GoogleFonts.robotoCondensed(fontSize: 15),
-                decoration: InputDecoration(
-                  labelText: "السؤال",
-                  hintText: "اكتب السؤال هنا",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                        color: Theme.of(context).primaryColor,
-                        width: 2,
-                        strokeAlign: StrokeAlign.outside,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
+  Future<void> showOptionsDialog(BuildContext context) {
+    return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Options'),
+            content: SingleChildScrollView(
+              child: ListBody(
                 children: <Widget>[
-                  _image != null
-                      ? Image.file(
-                          _image,
-                          width: 200,
-                          height: 200,
-                        )
-                      : SizedBox(
-                          height: 20,
-                        ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        child: Text(
-                          'اضف صورة للسؤال',
-                          style: GoogleFonts.robotoCondensed(
-                            fontSize: 15,
-                          ),
-                        ),
-                        onPressed: () async {
-                          XFile? image = await imagepicker.pickImage(
-                              source: ImageSource.camera);
-                          setState(() {
-                            if (image != null) {
-                              _image = File(image.path);
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('لم يتم التقاط الصورة')));
-                            }
-                          });
-                        },
-                        // child: const  Text('اضافة صورة للسؤال'),
-                      ),
-                      ElevatedButton(
-                        child: Text(
-                          ' اضف صورة للسؤال من الاستديو',
-                          style: GoogleFonts.robotoCondensed(
-                            fontSize: 15,
-                          ),
-                        ),
-                        onPressed: () async {
-                          XFile? image = await imagepicker.pickImage(
-                              source: ImageSource.gallery);
-                          setState(() {
-                            if (image != null) {
-                              _image = File(image.path);
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                      content: Text('لم يتم اختيارالصورة')));
-                            }
-                          });
-                        },
-                        //child: const  Text('اضافة صورة ff'),
-                      ),
-                    ],
+                  GestureDetector(
+                    child: Text('Capture Image Form camare'),
+                    onTap: () {
+                      openCamera();
+                    },
+                  ),
+                  Padding(padding: EdgeInsets.all(10.0)),
+                  GestureDetector(
+                    child: Text('Capture Image Form gallery'),
+                    onTap: () {
+                      openGallery();
+                    },
                   ),
                 ],
               ),
             ),
-          ],
-        ),
-      ),
-    );
+          );
+        });
   }
+  //String? selectedItem = 'items 1';
+
+  @override
+Widget build(BuildContext context) {
+  return Container(
+    padding: const EdgeInsets.all(6.0),
+    height: MediaQuery
+        .of(context)
+        .size
+        .height,
+    child: Directionality(
+      textDirection: TextDirection.rtl,
+      child: ListView(
+        padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
+        shrinkWrap: true,
+        dragStartBehavior: DragStartBehavior.start,
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 30.0,),
+              Text(
+                'data',
+                style: GoogleFonts.robotoCondensed(
+                  fontSize: 15,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 100,
+            child: TextField(
+              //keyboardType: TextInputType.number,
+              style: GoogleFonts.robotoCondensed(fontSize: 15),
+              decoration: InputDecoration(
+                labelText: "السؤال",
+                hintText: "اكتب السؤال هنا",
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(
+                      color: Theme
+                          .of(context)
+                          .primaryColor,
+                      width: 2,
+                      strokeAlign: StrokeAlign.outside,
+                      style: BorderStyle.solid),
+                ),
+              ),
+            ),
+          ),
+          _load ? displayImage() : SizedBox(),
+          ElevatedButton(
+            onPressed: () {
+              showOptionsDialog(context);
+            },
+            child: Text('Slieect Yor Image'),
+          ),
+          SizedBox(height: 7,),
+          QuestionSelection(),
+          SizedBox(height: 10,),
+          Column(
+            children: [
+              Row(
+                children: <Widget> [
+                  SizedBox(width: 7,),
+                  OutlinedButton(
+                    onPressed: () {
+                      Navigator.of(context).popUntil((route) => route.isFirst);
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder:
+                              (BuildContext context) => ExamQuestions()));
+
+                      // Navigator.of(context).push(
+                      //     MaterialPageRoute(
+                      //       builder: (_) => ExamQuestions(),
+                      //     )).then((value) => Navigator.pop(context));
+                      // Navigator.pushReplacement(context,
+                      //     MaterialPageRoute(builder: (BuildContext context) => ExamQuestions()));
+
+                      // Navigator
+                      //     .of(context)
+                      //     .pushReplacement(new MaterialPageRoute(builder: (BuildContext context) {
+                      //   return new ExamQuestions();
+                      // }));
+                      // Navigator.of(context).push
+                      //   (new MaterialPageRoute<ExamQuestions>(
+                      //     builder: (BuildContext context ) {
+                      //     return new ExamQuestions();
+                      // }));
+
+                      //   MaterialPageRoute(
+                      //       builder: (context) => ExamQuestions()));
+                      // // Navigator.push(context).push(MaterialPageRoute(
+                      // //     builder: (context) => ExamQuestions()
+                      // ));
+                    },
+                    child: const Text("اضف سؤال"),
+                    style: OutlinedButton.styleFrom(
+                      primary: Colors.white70, fixedSize: Size.fromWidth(100),
+                      backgroundColor: Colors.blue.shade500,
+                    ),
+                  ),
+                  SizedBox(width: 7,),
+
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text("حفظ مؤقت"),
+                    style: OutlinedButton.styleFrom(
+                      primary: Colors.white70, fixedSize: Size.fromWidth(100),
+                      backgroundColor: Colors.blue.shade500,
+                    ),
+                  ),
+                  SizedBox(width: 7,),
+                  OutlinedButton(
+                    onPressed: () {},
+                    child: const Text("انشاء"),
+                    style: OutlinedButton.styleFrom(
+                      primary: Colors.white70, fixedSize: Size.fromWidth(100),
+                      backgroundColor: Colors.blue.shade500,
+                    ),
+                  ),
+                  SizedBox(width: 5,),
+                ],
+              ),
+            ],
+          ),
+          // Padding(
+          //   padding: const EdgeInsets.symmetric(horizontal: 50),
+          //   child: Container(
+          //     child: Padding(
+          //       padding: const EdgeInsets.symmetric(horizontal: 50),
+          //         child: OutlinedButton(
+          //           onPressed: () {},
+          //           child: const Text("data"),
+          //           style: OutlinedButton.styleFrom(
+          //             primary: Colors.white70,
+          //             backgroundColor: Colors.orangeAccent,
+          //           ),
+          //         ),
+          //     ),
+          //   ),
+          // ),
+        ],
+
+      ),
+
+    ),
+
+  );
+}
 }

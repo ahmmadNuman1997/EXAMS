@@ -30,10 +30,8 @@ class _HomeScreenState  extends State <HomeScreen> {
           centerTitle: true,
           elevation: 10,
         ),
-
         backgroundColor: Colors.white70,
         body: Container(
-
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           alignment: Alignment.center,
@@ -73,16 +71,12 @@ class _HomeScreenState  extends State <HomeScreen> {
                     width: MediaQuery.of(context).size.width/2,
                     height: MediaQuery.of(context).size.width/2,
                     fit: BoxFit.contain,
-
                   )),
-
                       Container(
                         width: MediaQuery.of(context).size.width/2,
-
                         alignment: Alignment.center,
                         child: Text(
                           dataList[index]["text"],
-
                           maxLines: 1,
                           style: TextStyle(fontSize: 17),
                         ),

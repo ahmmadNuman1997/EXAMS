@@ -161,6 +161,7 @@ class _ExamSettingsState extends State<ExamSettings> {
                         fontSize: 15.0,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
+
                       ),
                     ),
                   ),
@@ -262,27 +263,6 @@ class _ExamSettingsState extends State<ExamSettings> {
                         ),
                       ],
                     ),
-                    // Row(
-                    //   children: [
-                    //     Text(
-                    //       "خاص",
-                    //       style: GoogleFonts.robotoCondensed(
-                    //         fontSize: 13.0,
-                    //         fontWeight: FontWeight.bold,
-                    //         color: Colors.black,
-                    //       ),
-                    //     ),
-                    //     Radio(
-                    //         activeColor: Colors.black,
-                    //         value: "private",
-                    //         groupValue: country,
-                    //         onChanged: (val) {
-                    //           setState(() {
-                    //             country = val;
-                    //           });
-                    //         })
-                    //   ],
-                    // ),
                   ],
                 ),
               ),
@@ -343,29 +323,7 @@ class _ExamSettingsState extends State<ExamSettings> {
                         ),
                       ],
                     ),
-                    // Row(
-                    //   children: [
-                    //     Text(
-                    //       "خاص",
-                    //       style: GoogleFonts.robotoCondensed(
-                    //         fontSize: 13.0,
-                    //         fontWeight: FontWeight.bold,
-                    //         color: Colors.black,
-                    //       ),
-                    //     ),
-                    //     Radio(
-                    //         activeColor: Colors.black,
-                    //         value: "private",
-                    //         groupValue: country,
-                    //         onChanged: (val) {
-                    //           setState(() {
-                    //             country = val;
-                    //           });
-                    //         })
-                    //   ],
-                    // ),
                     SizedBox(width: 30,),
-
                   ],
                 ),
               ),
@@ -459,10 +417,7 @@ class _ExamSettingsState extends State<ExamSettings> {
               ),
             ),
           ],
-
         ),
-
-
       ),
     );
   }
