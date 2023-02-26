@@ -3,13 +3,13 @@ import 'package:exams/screens/auth.dart';
 import 'package:exams/screens/login_screen.dart';
 import 'package:exams/screens/sigunp_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:exams/teachers/teachers_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'The_teacher/Examquestions.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp( const MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -24,18 +24,13 @@ class MyApp extends StatelessWidget {
       ),
       //home: const Auth(),
       routes: {
-        '/':(context) => const Auth(),
+        '/': (context) => const Auth(),
         'homeScreen': (context) => HomeScreen(),
-        'SigunpScreen':(context) => SignuScreen(),
+        'SigunpScreen': (context) => SignuScreen(),
         'loginScreen': (context) => LoginScreen(),
       },
     );
   }
 }
-
-  //onPressed: () {
- // Navigator.push(context,
-  //MaterialPageRoute(builder: (context) => TeachersPage()));
-  //},
 
 
