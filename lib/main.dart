@@ -3,16 +3,7 @@ import 'package:exams/screens/auth.dart';
 import 'package:exams/screens/login_screen.dart';
 import 'package:exams/screens/sigunp_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:exams/teachers/teachers_page.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:exams/main_pages/home_screen.dart';
-import 'package:exams/screens/auth.dart';
-import 'package:exams/screens/login_screen.dart';
-import 'package:exams/screens/sigunp_screen.dart';
-import 'package:flutter/material.dart';
-import 'package:exams/teachers/teachers_page.dart';
-import 'package:firebase_core/firebase_core.dart';
-
 import 'The_teacher/Examquestions.dart';
 
 void main() async {
@@ -37,16 +28,9 @@ class MyApp extends StatelessWidget {
         'homeScreen': (context) => HomeScreen(),
         'SigunpScreen': (context) => SignuScreen(),
         'loginScreen': (context) => LoginScreen(),
-        'اضف سؤال': (context) => ExamQuestions(),
-
       },
     );
   }
 }
-
-  //onPressed: () {
- // Navigator.push(context,
-  //MaterialPageRoute(builder: (context) => TeachersPage()));
-  //},
 
 
