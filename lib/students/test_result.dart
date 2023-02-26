@@ -10,7 +10,7 @@ class _TestResultState extends State<TestResult> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(' نتيجة الاختبار'),
+        title: const Text('نتيجخ الامتحان'),
         centerTitle: true,
         backgroundColor: Color(0xFF00695C),
       ),
@@ -35,7 +35,7 @@ class _TestResultState extends State<TestResult> {
                 height: 80,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
+                  children: const [
                     Text(
                       "Text 1",
                       style: TextStyle(

@@ -31,7 +31,7 @@ class _TeachersPageState extends State<TeachersPage> {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => Results()));
                 },
-                child: Text(
+                child: const Text(
                   ' النتائج',
                 ),
               ),
@@ -41,9 +41,9 @@ class _TeachersPageState extends State<TeachersPage> {
       ),
       appBar: AppBar(
         backgroundColor: Color(0xFF00695C),
-        title: Text("حساب معلم"),
+        title: const Text("حساب معلم"),
       ),
-      body: Center(
+      body: const Center(
         child: Text("!!!  لا يوجد اختبار بعد"),
       ),
       floatingActionButton: FloatingActionButton(
