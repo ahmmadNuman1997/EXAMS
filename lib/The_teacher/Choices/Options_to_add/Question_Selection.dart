@@ -158,6 +158,54 @@ class _QuestionSelectionState extends State<QuestionSelection> {
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(40.0),
                                 ),
+                                hintText: 'الاجابة 3',
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.cyan,
+                                    width: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            value: "Choose3",
+                            groupValue: Choose,
+                            onChanged: (val) {
+                              setState(() {
+                                Choose = val;
+                              });
+                            }),
+                        RadioListTile(
+                            title: TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(40.0),
+                                ),
+                                hintText: 'الاجابة 3',
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                  borderSide: BorderSide(
+                                    color: Colors.cyan,
+                                    width: 1,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            value: "Choose3",
+                            groupValue: Choose,
+                            onChanged: (val) {
+                              setState(() {
+                                Choose = val;
+                              });
+                            }),
+
+
+                        RadioListTile(
+                            title: TextField(
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(40.0),
+                                ),
                                 hintText: 'الاجابة 4',
                                 focusedBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
