@@ -198,8 +198,6 @@ class _QuestionSelectionState extends State<QuestionSelection> {
                                 Choose = val;
                               });
                             }),
-
-
                         RadioListTile(
                             title: TextField(
                               decoration: InputDecoration(
