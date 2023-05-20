@@ -2,19 +2,21 @@ import 'package:exams/The_teacher/the_basic.dart';
 import 'package:exams/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+import '../main_pages/home_screen.dart';
+import 'Enter_test.dart';
+
+class HomeStudent extends StatefulWidget {
+  const HomeStudent({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeStudent> createState() => _HomeStudentState();
 }
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeStudentState extends State<HomeStudent> {
   @override
   List dataList = [
-    {'text': 'Add EXAM', "image": "assets/AddExam.png"},
-    {'text': 'EXAM', "image": "assets/exam.png"},
-    {'text': 'data3', "image": "assets/logoEXam.png"},
-    {'text': 'data4', "image": "assets/logoEXam.png"},
+    {'text': 'Exams', "image": "assets/exam.png"},
+    {'text': 'Results', "image": "assets/exam.png"},
+    {'text': 'Settings', "image": "assets/settings.png"},
   ];
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         textDirection: TextDirection.rtl,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Exams'),
+            title: Text('Exaaaaaaaaaaaaams'),
             backgroundColor: Colors.blueAccent,
             centerTitle: true,
             elevation: 10,
@@ -35,6 +37,7 @@ class _HomeScreenState extends State<HomeScreen> {
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.center,
             padding: EdgeInsets.all(20.0),
+
             child: GridView.count(
               crossAxisCount: 2,
               semanticChildCount: 10,
@@ -42,14 +45,14 @@ class _HomeScreenState extends State<HomeScreen> {
               shrinkWrap: true,
               children: List.generate(
                   dataList.length,
-                  (index) => InkWell(
+                      (index) => InkWell(
                       onTap: () {
                         if (index == 0) {
                           print("add Exam");
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AddExem()));
+                                  builder: (context) => Enterthetest()));
                         } else if (index == 1) {
                           print(" Exam");
                         }
@@ -71,9 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Image.asset(
                                     dataList[index]["image"],
                                     width:
-                                        MediaQuery.of(context).size.width / 2,
+                                    MediaQuery.of(context).size.width / 2,
                                     height:
-                                        MediaQuery.of(context).size.width / 2,
+                                    MediaQuery.of(context).size.width / 2,
                                     fit: BoxFit.contain,
                                   )),
                               Container(

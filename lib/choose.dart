@@ -1,21 +1,19 @@
-import 'package:exams/The_teacher/the_basic.dart';
-import 'package:exams/screens/login_screen.dart';
 import 'package:flutter/material.dart';
-
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+import 'The_Student/the_main.dart';
+import 'main_pages/home_screen.dart';
+class ToChoose extends StatefulWidget {
+  const ToChoose({Key? key}) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<ToChoose> createState() => _ToChooseState();
 }
-class _HomeScreenState extends State<HomeScreen> {
-  @override
+
+class _ToChooseState extends State<ToChoose> {
   List dataList = [
-    {'text': 'Add EXAM', "image": "assets/AddExam.png"},
-    {'text': 'EXAM', "image": "assets/exam.png"},
-    {'text': 'data3', "image": "assets/logoEXam.png"},
-    {'text': 'data4', "image": "assets/logoEXam.png"},
+    {'text': 'Teacher', "image": "assets/images/"},
+    {'text': 'Student', "image": "assets/images/exam.png"},
   ];
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -24,12 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
         textDirection: TextDirection.rtl,
         child: Scaffold(
           appBar: AppBar(
-            title: Text('Exams'),
+            title: Text('WelcomeToExams'),
             backgroundColor: Colors.blueAccent,
             centerTitle: true,
             elevation: 10,
           ),
-          backgroundColor: Colors.white70,
+          backgroundColor: Colors.white,
           body: Container(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -42,22 +40,25 @@ class _HomeScreenState extends State<HomeScreen> {
               shrinkWrap: true,
               children: List.generate(
                   dataList.length,
-                  (index) => InkWell(
+                      (index) => InkWell(
                       onTap: () {
                         if (index == 0) {
-                          print("add Exam");
+                          print("Teacher");
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => AddExem()));
+                                  builder: (context) => HomeScreen()));
                         } else if (index == 1) {
-                          print(" Exam");
+                          print("Student");
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeStudent()));
                         }
                       },
                       splashColor: Colors.cyan,
                       child: Container(
                         padding: const EdgeInsets.all(6.0),
-
                         width: MediaQuery.of(context).size.width / 2,
                         // height: MediaQuery.of(context).size.width/1.5,
                         child: Card(
@@ -71,9 +72,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                   child: Image.asset(
                                     dataList[index]["image"],
                                     width:
-                                        MediaQuery.of(context).size.width / 2,
+                                    MediaQuery.of(context).size.width / 2,
                                     height:
-                                        MediaQuery.of(context).size.width / 2,
+                                    MediaQuery.of(context).size.width / 2,
                                     fit: BoxFit.contain,
                                   )),
                               Container(

@@ -5,7 +5,8 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'dart:typed_data';
 import 'Choices/Options_to_add/Question_Selection.dart';
-import 'Choices/Options_to_add/choose_the_correct_answer.dart';
+import 'add_exam_model.dart';
+import 'add_exam_widget.dart';
 
 class ExamQuestions extends StatefulWidget {
   const ExamQuestions({Key? key}) : super(key: key);
@@ -81,10 +82,85 @@ class _ExamQuestionsState extends State<ExamQuestions> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(6.0),
-      height: MediaQuery.of(context).size.height,
-      child: Directionality(
+    return Scaffold(
+      bottomNavigationBar: SafeArea(
+        child: Container(
+          padding: EdgeInsets.all(10),
+          margin:EdgeInsets.symmetric(horizontal: 10,vertical: 10),
+          decoration: BoxDecoration(
+            color: Colors.black12.withOpacity(0.8),
+            borderRadius: BorderRadius.all(Radius.circular(30)),
+          ),
+         child: Row(
+            children: <Widget>[
+              SizedBox(
+                width: 17,
+              ),
+              OutlinedButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .popUntil((route) => route.isFirst);
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              ExamQuestions()));
+
+                  // Navigator.of(context).push(
+                  //     MaterialPageRoute(
+                  //       builder: (_) => ExamQuestions(),
+                  //     )).then((value) => Navigator.pop(context));
+                  // Navigator.pushReplacement(context,
+                  //     MaterialPageRoute(builder: (BuildContext context) => ExamQuestions()));
+                  //
+                  // Navigator
+                  //     .of(context)
+                  //     .pushReplacement(new MaterialPageRoute(builder: (BuildContext context) {
+                  //   return new ExamQuestions();
+                  // }));
+                  // Navigator.of(context).push
+                  //   (new MaterialPageRoute<ExamQuestions>(
+                  //     builder: (BuildContext context ) {
+                  //     return new ExamQuestions();
+                  // }));
+                  //
+                  //   MaterialPageRoute(
+                  //       builder: (context) => ExamQuestions()));
+                  // // Navigator.push(context).push(MaterialPageRoute(
+                  // //     builder: (context) => ExamQuestions()
+                  // ));
+                },
+
+                child: const Text("اضف سؤال"),
+                style: OutlinedButton.styleFrom(
+                  primary: Colors.white70,
+                  fixedSize: Size.fromWidth(100),
+                  backgroundColor: Colors.blue.shade500,
+                ),
+              ),
+              SizedBox(
+                width: 17,
+              ),
+              OutlinedButton(
+                onPressed: () {},
+                child: const Text("انشاء"),
+                style: OutlinedButton.styleFrom(
+                  primary: Colors.white70,
+                  fixedSize: Size.fromWidth(100),
+                  backgroundColor: Colors.blue.shade500,
+                ),
+              ),
+              SizedBox(
+                width: 17,
+              ),
+            ],
+          ),
+
+        ),
+      ),
+      // padding: const EdgeInsets.all(6.0),
+      // height: MediaQuery.of(context).size.height,
+      body: Directionality(
         textDirection: TextDirection.rtl,
         child: ListView(
           padding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
@@ -92,149 +168,13 @@ class _ExamQuestionsState extends State<ExamQuestions> {
           dragStartBehavior: DragStartBehavior.start,
           keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: 30.0,
-                ),
-                Text(
-                  'data',
-                  style: GoogleFonts.robotoCondensed(
-                    fontSize: 15,
-                  ),
-                ),
-              ],
+        ExamQuestionsWidget( exam: Exam(
+        name: "dsgfdgdfx"
+        )),
+            ExamQuestionsWidget( exam: Exam(
+              name: "dsgfdgdfx"
             ),
-            SizedBox(
-              height: 100,
-              child: TextField(
-                //keyboardType: TextInputType.number,
-                style: GoogleFonts.robotoCondensed(fontSize: 15),
-                //style: ArabicTextStyle(arabicFont: ArabicFont.dubai,fontSize:25),
-                decoration: InputDecoration(
-                  labelText: "السؤال",
-                  hintText: "اكتب السؤال هنا",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(
-                        color: Theme.of(context).primaryColor,
-                        width: 2,
-                        strokeAlign: StrokeAlign.outside,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-              ),
             ),
-            _load ? displayImage() : SizedBox(),
-            ElevatedButton(
-              onPressed: () {
-                showOptionsDialog(context);
-              },
-              child: Text('Slieect Yor Image'),
-            ),
-            SizedBox(
-              height: 7,
-            ),
-            QuestionSelection(),
-            SizedBox(
-              height: 10,
-            ),
-            Column(
-              children: [
-                Row(
-                  children: <Widget>[
-                    SizedBox(
-                      width: 7,
-                    ),
-                    OutlinedButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .popUntil((route) => route.isFirst);
-                        Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    ExamQuestions()));
-
-                        // Navigator.of(context).push(
-                        //     MaterialPageRoute(
-                        //       builder: (_) => ExamQuestions(),
-                        //     )).then((value) => Navigator.pop(context));
-                        // Navigator.pushReplacement(context,
-                        //     MaterialPageRoute(builder: (BuildContext context) => ExamQuestions()));
-
-                        // Navigator
-                        //     .of(context)
-                        //     .pushReplacement(new MaterialPageRoute(builder: (BuildContext context) {
-                        //   return new ExamQuestions();
-                        // }));
-                        // Navigator.of(context).push
-                        //   (new MaterialPageRoute<ExamQuestions>(
-                        //     builder: (BuildContext context ) {
-                        //     return new ExamQuestions();
-                        // }));
-
-                        //   MaterialPageRoute(
-                        //       builder: (context) => ExamQuestions()));
-                        // // Navigator.push(context).push(MaterialPageRoute(
-                        // //     builder: (context) => ExamQuestions()
-                        // ));
-                      },
-                      child: const Text("اضف hhhhhسؤال"),
-                      style: OutlinedButton.styleFrom(
-                        primary: Colors.white70,
-                        fixedSize: Size.fromWidth(100),
-                        backgroundColor: Colors.blue.shade500,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    OutlinedButton(
-                      onPressed: () {},
-                      child: const Text("حفظ مؤقت"),
-                      style: OutlinedButton.styleFrom(
-                        primary: Colors.white70,
-                        fixedSize: Size.fromWidth(100),
-                        backgroundColor: Colors.blue.shade500,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 7,
-                    ),
-                    OutlinedButton(
-                      onPressed: () {},
-                      child: const Text("انشاء"),
-                      style: OutlinedButton.styleFrom(
-                        primary: Colors.white70,
-                        fixedSize: Size.fromWidth(100),
-                        backgroundColor: Colors.blue.shade500,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 5,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 50),
-            //   child: Container(
-            //     child: Padding(
-            //       padding: const EdgeInsets.symmetric(horizontal: 50),
-            //         child: OutlinedButton(
-            //           onPressed: () {},
-            //           child: const Text("data"),
-            //           style: OutlinedButton.styleFrom(
-            //             primary: Colors.white70,
-            //             backgroundColor: Colors.orangeAccent,
-            //           ),
-            //         ),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'choose_the_correct_answer.dart';
 
 class QuestionSelection extends StatefulWidget {
   const QuestionSelection({Key? key}) : super(key: key);
@@ -123,52 +122,6 @@ class _QuestionSelectionState extends State<QuestionSelection> {
                               ),
                             ),
                             value: "Choose2",
-                            groupValue: Choose,
-                            onChanged: (val) {
-                              setState(() {
-                                Choose = val;
-                              });
-                            }),
-                        RadioListTile(
-                            title: TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(40.0),
-                                ),
-                                hintText: 'الاجابة 3',
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.cyan,
-                                    width: 1,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            value: "Choose3",
-                            groupValue: Choose,
-                            onChanged: (val) {
-                              setState(() {
-                                Choose = val;
-                              });
-                            }),
-                        RadioListTile(
-                            title: TextField(
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(40.0),
-                                ),
-                                hintText: 'الاجابة 3',
-                                focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                  borderSide: BorderSide(
-                                    color: Colors.cyan,
-                                    width: 1,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            value: "Choose3",
                             groupValue: Choose,
                             onChanged: (val) {
                               setState(() {
@@ -430,6 +383,7 @@ class _QuestionSelectionState extends State<QuestionSelection> {
             ),
           ),
         ),
+
       ),
     );
   }

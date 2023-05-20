@@ -13,22 +13,17 @@ class AddExem extends StatefulWidget {
   State<AddExem> createState() => _AddExemState();
 }
 
-class _AddExemState extends State<AddExem> with SingleTickerProviderStateMixin {
-
-  late final TabController tabController;
-
+class _AddExemState extends State<AddExem> with SingleTickerProviderStateMixin {  late final TabController tabController;
   @override
   void initState() {
     tabController = TabController(length:4, vsync: this);
     super.initState();
   }
-
   @override
   void dispose() {
     tabController.dispose();
     super.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     return Directionality(textDirection: TextDirection.rtl,child:Scaffold(
@@ -37,11 +32,9 @@ class _AddExemState extends State<AddExem> with SingleTickerProviderStateMixin {
         elevation: 10,
         //backgroundColor: const Color(0xFF128a7e),
         title: const Text("البيانات الاساسية"),
-
         bottom: TabBar(
           indicatorColor: Colors.white,
           tabs: const [
-
             Tab(text: 'اعداد الاختبار'),
             Tab(text: 'اسئلة الاختبار'),
             Tab(text: 'معاينة الاختبار'),
@@ -52,7 +45,8 @@ class _AddExemState extends State<AddExem> with SingleTickerProviderStateMixin {
       body: TabBarView(
         children: const [
           ExamSettings(),
-          ExamQuestions(),
+          ExamQuestions(
+          ),
           //Chats(),
           //Status(),
           //Calls(),

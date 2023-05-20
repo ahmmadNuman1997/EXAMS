@@ -4,6 +4,9 @@ import 'package:exams/screens/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../choose.dart';
+import 'Onboar ding screen/Onbording.dart';
+
 class Auth extends StatelessWidget {
   const Auth({super.key});
 
@@ -14,7 +17,8 @@ class Auth extends StatelessWidget {
           stream: FirebaseAuth.instance.authStateChanges(),
         builder: ((context, snapshot) {
           if(snapshot.hasData){
-            return  HomeScreen();
+            return  Onbording();
+            //return  ToChoose();
           }else{
             return LoginScreen();
           }

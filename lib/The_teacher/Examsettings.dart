@@ -19,10 +19,10 @@ class _ExamSettingsState extends State<ExamSettings> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(10.0),
-      height: MediaQuery.of(context).size.height,
-      child: Directionality(
+    return Scaffold(
+      // padding: const EdgeInsets.all(10.0),
+      // height: MediaQuery.of(context).size.height,
+      body: Directionality(
         textDirection: TextDirection.rtl,
         child: ListView(
           padding: EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
@@ -38,25 +38,6 @@ class _ExamSettingsState extends State<ExamSettings> {
                 decoration: InputDecoration(
                   labelText: "أسم الاختبار",
                   hintText: "ادخل اسم الاختبار هنا",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(9),
-                    borderSide: BorderSide(
-                        color: Theme.of(context).primaryColor,
-                        width: 2,
-                        strokeAlign: StrokeAlign.outside,
-                        style: BorderStyle.solid),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 90,
-              child: TextField(
-                //keyboardType: TextInputType.number,
-                style: GoogleFonts.robotoCondensed(fontSize: 15),
-                decoration: InputDecoration(
-                  labelText: "وصف الاختبار(اختياري)",
-                  hintText: "ادخل وصف الاختبار هنا",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(9),
                     borderSide: BorderSide(
