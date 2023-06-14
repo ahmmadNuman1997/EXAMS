@@ -1,8 +1,5 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import 'Question_settings/body.dart';
 import 'Question_settings/quiz_screen.dart';
 
 // class Enterthetest extends StatefulWidget {
@@ -122,10 +119,9 @@ class Enterthetest extends StatelessWidget {
   Widget build(BuildContext context) {
     return   Directionality(textDirection: TextDirection.rtl,child:Scaffold(
      appBar: AppBar(
-       elevation: 0,
-       backgroundColor: Colors.white,
+       elevation: 8,
+       backgroundColor: Colors.white12,
        brightness: Brightness.light,
-       iconTheme: IconThemeData(color: Colors.black),
      ),
       body: Column(
         children: [
@@ -152,12 +148,12 @@ class Enterthetest extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
-                                    BorderRadius.circular(0xFFB1BCCD + 3),
+                                    BorderRadius.circular(0xFFB1BCCD + 2),
                               ),
                               child: Text(
-                                'adsadssesdews',
+                                ' Online Exams',
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 14.0,
                                   color: Colors.teal,
                                   fontWeight: FontWeight.w200,
                                 ),
@@ -188,7 +184,7 @@ class Enterthetest extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
+                    topLeft: Radius.circular(34),
                     topRight: Radius.circular(30),
                   ),
                 ),
@@ -224,8 +220,9 @@ class Enterthetest extends StatelessWidget {
                         ),
                         ),
                         SizedBox(height: 10),
-                        MaterialButton(onPressed:  (){ Navigator.push(
-                            context,
+                        MaterialButton(onPressed:  (){                               Navigator.of(context,rootNavigator:true ).push(
+
+
                             MaterialPageRoute(
                                 builder: (context) => QuizScreen()));},
                           child:  Text('دخول',

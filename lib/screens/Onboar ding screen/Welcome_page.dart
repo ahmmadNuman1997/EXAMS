@@ -1,7 +1,10 @@
 import 'package:exams/main.dart';
 import 'package:flutter/material.dart';
-import 'Onbording.dart';
-void main () => runApp(MyApp());
+import '../login_screen.dart';
+import 'onboarding_screen.dart';
+
+
+void main () => runApp( MyApp());
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({Key? key}) : super(key: key);
 
@@ -12,7 +15,7 @@ class WelcomeScreen extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: Onbording(),
+      home:  LoginPage(),
     );
   }
 }

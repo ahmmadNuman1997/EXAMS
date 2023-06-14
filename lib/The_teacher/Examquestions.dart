@@ -126,7 +126,8 @@ class _ExamQuestionsState extends State<ExamQuestions> {
                   //
                   //   MaterialPageRoute(
                   //       builder: (context) => ExamQuestions()));
-                  // // Navigator.push(context).push(MaterialPageRoute(
+                  //                               Navigator.of(context,rootNavigator:true ).push(
+// context).push(MaterialPageRoute(
                   // //     builder: (context) => ExamQuestions()
                   // ));
                 },

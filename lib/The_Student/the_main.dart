@@ -49,8 +49,9 @@ class _HomeStudentState extends State<HomeStudent> {
                       onTap: () {
                         if (index == 0) {
                           print("add Exam");
-                          Navigator.push(
-                              context,
+                                                        Navigator.of(context,rootNavigator:true ).push(
+
+
                               MaterialPageRoute(
                                   builder: (context) => Enterthetest()));
                         } else if (index == 1) {

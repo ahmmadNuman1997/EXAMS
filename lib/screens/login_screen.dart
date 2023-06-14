@@ -1,193 +1,158 @@
 import 'package:flutter/material.dart';
-import 'package:exams/main.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
-
+class LoginPage extends StatefulWidget {
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
-  //String? errorMessage = '';
-  //bool isLogin = true;
-  final _emailController = TextEditingController();
-  final _passwordController = TextEditingController();
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-      email: _emailController.text.trim(),
-      password: _passwordController.text.trim(),
-    );
-  }
+enum LoginType { teacher, student }
 
+class _LoginPageState extends State<LoginPage> {
+  final formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  LoginType? _character = LoginType.teacher;
 
-  void openSigunpScreen() {
-    Navigator.of(context).pushReplacementNamed('SigunpScreen');
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _passwordController.dispose();
-    _emailController.dispose();
-  }
+  get auth => null;
 
   @override
   Widget build(BuildContext context) {
+    doLogin() {
+      final form = formKey.currentState;
+      if (form!.validate()) {
+        form.save();
+        final Future<Map<String, dynamic>> successfulMessage = auth.login(
+            emailController.text,
+            passwordController.text,
+            _character == LoginType.teacher ? "teacher" : "student");
+
+        successfulMessage.then((response) {
+          if (response['status']) {
+            // User user = response['user'];
+            if (_character == LoginType.teacher) {
+              Navigator.pushNamed(context, '/dashboard');
+            } else {
+              Navigator.pushNamed(context, '/studentdashboard');
+            }
+          } else {
+            if (response['error_code'] == "email_not_verified") {
+              Navigator.pushNamed(context, '/verifyemail');
+            } else {
+              // Flushbar(
+              //   title: "Failed Login",
+              //   message: response['message'].toString(),
+              //   duration: const Duration(seconds: 3),
+              // ).show(context);
+            }
+          }
+        });
+      } else {
+        print("form is invalid");
+      }
+    }
+
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      body: SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/logoEXam.png',
-                  height: 150,
-                ),
-                SizedBox(height: 20),
-                Text(
-                  'SIGN IN',
-                      style: GoogleFonts.robotoCondensed(
-                      fontSize: 40.0, fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Welcome back ',
-                  style: GoogleFonts.robotoCondensed(fontSize: 18),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Container(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextField(
-                        controller: _emailController,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            Icons.email_outlined, color: Colors.black54,),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          hintText: 'Email',
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40.0),
-                            borderSide: BorderSide(
-                              color: Colors.cyan, width: 1,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 12),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: TextField(
-                        controller: _passwordController,
-                        obscureText: true,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon
-                            (Icons.lock,
-                            color: Colors.black54,
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40.0),
-                          ),
-                          hintText: 'Password',
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40.0),
-                            borderSide: BorderSide(
-                              color: Colors.cyan, width: 1,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25),
-                  child: GestureDetector(
-                    onTap: signIn,
-                    child: Container(
-                      padding: EdgeInsets.all(16),
-                      decoration: BoxDecoration(
-                          color: Colors.cyan,
-                          borderRadius: BorderRadius.circular(12)),
-                      child: Center(
-                        child: Text(
-                          'Login',
-                            style: GoogleFonts.robotoCondensed(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-
-                      ),
-
-                    ),
-
-                  ),
-
-                ),
-                //SizedBox(height: 10),
-                Container(
-                  margin: EdgeInsets.symmetric(
-                      vertical: 30.0, horizontal: 20.0),
-                  child: Row(
-                    children: [
-                      Expanded(
-                          child: Divider(indent: 1.0, color: Colors.black54,)),
+      appBar: AppBar(title: Text('fjnjv'),),
+      body: Container(
+        padding: const EdgeInsets.only(bottom: 30),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(
+                margin: const EdgeInsets.only(left: 20, right: 20, top: 30),
+                child: Form(
+                  key: formKey,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.max,
+                    children: <Widget>[
+                      Row(children: <Widget>[
+                        Expanded(
+                            flex: 1,
+                            child: RadioListTile(
+                              title: const Text("Student"),
+                              value: LoginType.student,
+                              groupValue: _character,
+                              onChanged: (LoginType? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
+                            )),
+                        Expanded(
+                            flex: 1,
+                            child: RadioListTile(
+                              title: const Text('Teacher'),
+                              value: LoginType.teacher,
+                              groupValue: _character,
+                              onChanged: (LoginType? value) {
+                                setState(() {
+                                  _character = value;
+                                });
+                              },
+                            )),
+                      ]),
+                      _textInput(
+                          hint: "Email",
+                          autofocus: false,
+                          obscuretext: false,
+                          controller: emailController,
+                          icon: Icons.email,
+                         ),
+                      _textInput(
+                          hint: "Password",
+                          autofocus: false,
+                          obscuretext: true,
+                          controller: passwordController,
+                          icon: Icons.vpn_key,
+                         ),
                       Container(
-                        margin: EdgeInsets.symmetric(horizontal: 15.0),
-                        child: Text('or'),
+                        margin: const EdgeInsets.only(top: 10),
+                        alignment: Alignment.centerRight,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, "/forgetpass");
+                          },
+                          child: const Text(
+                            "Forgot Password?",
+                          ),
+                        ),
                       ),
-                      Expanded(
-                          child: Divider(indent: 1.0, color: Colors.black54,)),
+                       Expanded(
+                         child: Center(
+
+                          ),
+                         ),
+
                     ],
                   ),
                 ),
-                SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'No a member?',
-                      style: GoogleFonts.robotoCondensed(
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: openSigunpScreen,
-                      child: Text(
-                        'Sign up now',
-                        style: GoogleFonts.robotoCondensed(
-                          fontWeight: FontWeight.bold,
-                          color: Colors.indigoAccent,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
+              ),
+            )
+          ],
         ),
+      ),
+    );
+  }
+
+  var loading = Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: const <Widget>[
+      CircularProgressIndicator(),
+      Text(" Authenticating ... Please wait")
+    ],
+  );
+
+  Widget _textInput(
+      {controller, hint, autofocus, obscuretext, icon, validator}) {
+    return Container(
+      margin: const EdgeInsets.only(top: 10),
+      padding: const EdgeInsets.only(left: 10),
+      child: TextFormField(
+        autofocus: autofocus,
+        obscureText: obscuretext,
+        controller: controller,
+        validator: validator,
       ),
     );
   }

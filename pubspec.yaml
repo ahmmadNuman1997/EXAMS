@@ -33,9 +33,9 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  ionicons: ^0.2.2
   google_fonts: ^4.0.3
-  firebase_core: ^2.5.0
-  firebase_auth: ^4.2.9
+#  firebase_auth: ^4.2.9
   grouped_buttons: ^1.0.4
   image_picker: ^0.8.6+1
   path: ^1.8.2
@@ -46,6 +46,13 @@ dependencies:
   get: ^4.1.4
   liquid_swipe: ^3.1.0
   smooth_page_indicator: ^1.1.0
+  percent_indicator: ^4.2.3
+  day_night_switch: ^1.0.3
+  day_night_switcher: ^0.2.0+1
+  animated_theme_switcher: ^2.0.8
+  shared_preferences: ^2.1.1
+  flutter_inset_box_shadow: ^1.0.8
+  animated_text_kit: ^4.2.2
 
 
 
@@ -71,13 +78,22 @@ flutter:
   assets:
      - assets/images/
      - assets/logoEXam.png
-     - assets/AddExam.png
-     - assets/exam.png
+     - assets/901578.png
+     - assets/miscellaneous-blue.jpg
      - assets/settings.png
      - assets/Multiple.png
      - assets/Electronic_exams1.png
      - assets/Electronic_exams6.jpg
      - assets/Electronic_exams3.jpg
+     - assets/exam_online2-removebg-preview.png
+     - assets/icon-vector.jpg
+     - assets/Test-creation-icon.jpg
+     - assets/Electronic-exams-Test.jpg
+     - assets/Mentimeter_VisualAssets.png
+     - assets/images-twst.jpg
+     - assets/images_(11).jpg
+     - assets/fill-in-vector-removebg-preview.png
+
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
