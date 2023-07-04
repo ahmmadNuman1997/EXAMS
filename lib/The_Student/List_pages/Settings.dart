@@ -24,8 +24,8 @@ class LisTileExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return   Directionality(textDirection: TextDirection.rtl,child: Scaffold(
-      appBar: AppBar(title:  Text('الإعدادات',
-
+      appBar: AppBar(
+        title:  Text('الإعدادات',
         style: GoogleFonts.notoNaskhArabic(
           fontSize: 19,
           color:  Colors.white,

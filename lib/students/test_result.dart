@@ -26,7 +26,7 @@ class _TestResultState extends State<TestResult> {
               
               Container(
                  decoration: BoxDecoration(
-                  color: Colors.yellow[800],
+                  color: Colors.yellow[700],
                       borderRadius: BorderRadius.circular(10)),
                 padding: EdgeInsets.all(20),
                 alignment: Alignment.topCenter,

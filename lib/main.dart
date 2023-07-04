@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
       //   // 'SigunpScreen': (context) => SignuScreen(),
       //   'loginScreen': (context) => LoginPage(),
       //   'loginScreen': (context) => LoginPage(),
-      //
+      // https://api.flutter.dev/flutter/material/AlertDialog-class.html
       //   'HomeScreen': (context) => HomeScreen(opendrawer: () {  }, animationtime: 0.9,),
       //   // 'hbhhbjkj' : (context) =>  ProfilePage(),
       // },

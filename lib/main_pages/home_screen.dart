@@ -1,7 +1,6 @@
 import 'package:exams/The_teacher/the_basic.dart';
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
-
 import '../Drawerhiden/Drawer_widget.dart';
 class HomeScreen extends StatefulWidget {
   VoidCallback opendrawer;
@@ -111,7 +110,7 @@ class _HomePageState extends State<HomeScreen> {
                                   // context,
 
                                   MaterialPageRoute(
-                                      builder: (context) => AddExem()));
+                                      builder: (context) => TabBarExample()));
                             },
                             title: "إنشاء اختبار",
                             icon: "assets/Test-creation-icon.jpg",

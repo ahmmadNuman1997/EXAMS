@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../The_Student/List_pages/Account_information/Mlain.dart';
-import '../The_Student/List_pages/Account_information/page/profile_page.dart';
-import '../The_Student/List_pages/My_file_schedule.dart';
 import '../The_Student/List_pages/Settings.dart';
 import '../The_Student/List_pages/Theme/theme_cubit.dart';
 import '../The_Student/List_pages/exit_button.dart';
@@ -66,16 +64,14 @@ class _DrawerWidgetState extends State<DrawerWidget>
                           color: Colors.white,
                           fontWeight: FontWeight.w200),
                     ),
-
                     onTap: () {
-                      if(item.id==1){
-
+                      if(item.id==1)
                                                       Navigator.of(context,rootNavigator:true ).push(
 
 
                             MaterialPageRoute(
                                 builder: (context) => MyAppd()));
-                      }
+
                       if(item.id==4){
                                                       Navigator.of(context,rootNavigator:true ).push(
 
