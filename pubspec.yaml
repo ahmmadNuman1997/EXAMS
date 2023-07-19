@@ -53,8 +53,7 @@ dependencies:
   shared_preferences: ^2.1.1
   flutter_inset_box_shadow: ^1.0.8
   animated_text_kit: ^4.2.2
-
-
+  date_time_picker: ^2.1.0
 
 dev_dependencies:
   flutter_test:
